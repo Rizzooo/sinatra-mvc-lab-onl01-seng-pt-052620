@@ -4,7 +4,9 @@ class PigLatinizer
       @user_phrase = user_phrase
       string = @user_phrase
       words = string.split(" ")
-      phrase = words.collect  {|word| piglatinize_word(word)}
+      phrase = words.collect  do |word| 
+        piglatinize_word(word)
+      end
       phrase.join(" ")
   end
   
@@ -12,8 +14,8 @@ class PigLatinizer
       first_letter = word[0].downcase
   
       if ["a", "e", "i", "o", "u"].include?(first_letter)
-        # piglatinize word that starts with a vowel
         "#{word}way"
+        
       else
         consonants = []
         consonants << word[0]
@@ -27,3 +29,6 @@ class PigLatinizer
         "#{word[consonants.length..-1] + consonants.join + "ay"}"
       end
   end
+
+end
+
